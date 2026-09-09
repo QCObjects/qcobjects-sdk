@@ -1,4 +1,9 @@
-![logo](https://qcobjects.dev/qcobjects_01.png)
+> **Official repository.** This is the maintained QCObjects SDK
+> (MIT license). Normative specifications live in
+> [QCObjects/product-specs](https://github.com/QCObjects/product-specs)
+> ([docs](https://qcobjects.github.io/product-specs/)).
+>
+> ![logo](https://qcobjects.dev/qcobjects_01.png)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FQuickCorp%2FQCObjects-SDK.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FQuickCorp%2FQCObjects-SDK?ref=badge_shield)
 
 QCObjects SDK
