@@ -1,6 +1,6 @@
 /* eslint-disable array-callback-return */
 /**
- * QCObjects SDK 2.5
+ * QCObjects Framework SDK
  * ________________
  *
  * Author: Jean Machuca <correojean@gmail.com>
