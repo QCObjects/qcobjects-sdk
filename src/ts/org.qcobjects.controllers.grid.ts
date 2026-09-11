@@ -1,21 +1,12 @@
 /**
- * QCObjects SDK 2.5
+ * QCObjects Framework SDK
  * ________________
  *
  * Author: Jean Machuca <correojean@gmail.com>
  *
  * Cross Browser Javascript Framework for MVC Patterns
- * QuickCorp/QCObjects is licensed under the
- * GNU Lesser General Public License v3.0
- * [LICENSE] (https://github.com/QuickCorp/QCObjects/blob/master/LICENSE.txt)
- *
- * Permissions of this copyleft license are conditioned on making available
- * complete source code of licensed works and modifications under the same
- * license or the GNU GPLv3. Copyright and license notices must be preserved.
- * Contributors provide an express grant of patent rights. However, a larger
- * work using the licensed work through interfaces provided by the licensed
- * work may be distributed under different terms and without source code for
- * the larger work.
+ * QCObjects is licensed under the MIT License
+ * [LICENSE] (https://github.com/QCObjects/qcobjects-sdk/blob/main/LICENSE.txt)
  *
  * Copyright (C) 2015 Jean Machuca,<correojean@gmail.com>
  *
@@ -121,10 +112,10 @@ export class DataGridController extends Controller {
         let page: number | string | null | undefined;
         paginateIn = (paginateIn !== null) ? (paginateIn) : ("client");
         if (paginateIn === "client") {
-          page = this.component.body.getAttribute("page-number") as unknown as number;
+          page = this.component.body.getAttribute("page-number");
           page = (isNaN(page) || page === null) ? (-1) : (page);
           if (page !== -1) {
-            pagesNumber = this.component.body.getAttribute("total-pages") as unknown as number;
+            pagesNumber = this.component.body.getAttribute("total-pages");
             pagesNumber = (isNaN(pagesNumber)) ? (1) : (pagesNumber);
             offset = this.getPageIndex(page, pagesNumber, list.length)[0];
             limit = this.getPageIndex(page, pagesNumber, list.length)[1];
@@ -242,7 +233,7 @@ export class DataGridController extends Controller {
         let pagesNumber;
         if (page !== -1) {
           const serverDataCount = (this.component.body.getAttribute("server-data-count") !== null) ? (this.component.body.getAttribute("server-data-count") as unknown as number) : (1);
-          pagesNumber = this.component.body.getAttribute("total-pages") as unknown as number;
+          pagesNumber = this.component.body.getAttribute("total-pages");
           pagesNumber = (isNaN(pagesNumber)) ? (1) : (pagesNumber);
           offset = this.getPageIndex(page, pagesNumber, serverDataCount)[0];
           limit = this.getPageIndex(page, pagesNumber, serverDataCount)[1];

@@ -1,6 +1,6 @@
 {
   "name": "qcobjects-sdk",
-  "version": "2.5.105",
+  "version": "2.6.0",
   "description": "QCObjects SDK is a set of Controllers, Views and Components that are elementary and useful to assist developers to build applications under MVC patterns using QCObjects, Cross Browser Javascript Framework for MVC Patterns",
   "main": "public/cjs/index.cjs",
   "module": "public/esm/index.mjs",
@@ -36,7 +36,7 @@
     "./js/org.qcobjects.cloud.auth.session.data": "./build/js/org.qcobjects.cloud.auth.session.data.js",
     "./QCObjects-SDK": "./build/QCObjects-SDK.js"
   },
-  "license": "LGPL-3.0",
+  "license": "MIT",
   "scripts": {
     "build": "npm run build:ts-types && npm run build:ts && npm run build:browser",
     "postbuild": "node ./postbuild.js",

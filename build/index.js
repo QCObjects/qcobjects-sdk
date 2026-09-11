@@ -1,7 +1,7 @@
 "use strict";
 /* eslint-disable @typescript-eslint/no-empty-function */
 /**
- * QCObjects SDK 2.5
+ * QCObjects Framework SDK
  * ________________
  *
  * Author: Jean Machuca <correojean@gmail.com>

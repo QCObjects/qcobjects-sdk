@@ -2,6 +2,11 @@
 
 This is an automatic Changelog history of versions generated using the command: **qcobjects v-changelog > CHANGELOG.md**
 
+## v2.6.0
+
+	- License migration LGPLv3 → MIT (LICENSE.txt, package.json, source headers)
+	- See product-specs 09-license and 15-unified-vision-v3 (Phase 1)
+
 ## v0 -> v0.0
 
 	- DataGridController exec runComponentHelpers when done for subcomponents
