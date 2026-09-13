@@ -2,6 +2,10 @@
 
 This is an automatic Changelog history of versions generated using the command: **qcobjects v-changelog > CHANGELOG.md**
 
+## v2.6.2
+
+	- fix: repository.url QuickCorp -> QCObjects/qcobjects-sdk (Sigstore provenance E422)
+
 ## v2.6.1
 
 	- fix: externalize qcobjects in the bundle (stop inlining stale core; no more node:process in dist)
