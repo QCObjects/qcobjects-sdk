@@ -2,6 +2,12 @@
 
 This is an automatic Changelog history of versions generated using the command: **qcobjects v-changelog > CHANGELOG.md**
 
+## v2.6.1
+
+	- fix: externalize qcobjects in the bundle (stop inlining stale core; no more node:process in dist)
+	- fix: devDependencies/peerDependencies qcobjects range -> >=2.5.142
+	- fix: bugs.url QuickCorp -> QCObjects (Sigstore provenance E422 guard)
+
 ## v2.6.0
 
 	- License migration LGPLv3 → MIT (LICENSE.txt, package.json, source headers)

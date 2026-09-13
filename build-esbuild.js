@@ -18,9 +18,7 @@ const baseSettings = {
     chunkNames: "chunks/[name]-[hash]",
     plugins: [
         alias({
-            "types": path.join(__dirname, "src/types/global/index.d.ts"),
-            "qcobjects": path.join(__dirname, "node_modules/qcobjects/build/QCObjects.js"),
-            "qcobjects-sdk": path.join(__dirname, "src/QCObjects-SDK.ts")
+            "types": path.join(__dirname, "src/types/global/index.d.ts")
         })
     ],
     external: ["os", "path", "http", "url", 
