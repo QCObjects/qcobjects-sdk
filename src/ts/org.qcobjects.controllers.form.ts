@@ -85,7 +85,7 @@ export class FormController extends Controller {
       }), false).then(
         () => {
           // This will show the service response as a plain text
-          console.log("DONE SERVICE COMPONENT");
+          logger.info("DONE SERVICE COMPONENT");
           location.href = this.formSettings.nextRouting;
 
         },
