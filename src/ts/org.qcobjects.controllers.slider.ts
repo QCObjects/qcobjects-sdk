@@ -14,7 +14,7 @@
  * license document, but changing it is not allowed.
  */
 "use strict";
-import { ClassFactory, Controller, New, Package, logger, Component } from "qcobjects";
+import { ClassFactory, Controller, New, Package, logger, Component, set } from "qcobjects";
 
 type SliderParams = {
   dependencies: any[];
@@ -38,7 +38,7 @@ export class SliderController extends Controller {
     this.component = component;
     this._componentRoot = (component.shadowed) ? (component.shadowRoot) : (component.body);
     this.sliderHandlerName = "slider_" + this.component.__instanceID.toString();
-    (global as any).set(this.sliderHandlerName, this);
+    set(this.sliderHandlerName, this);
 
   }
 
