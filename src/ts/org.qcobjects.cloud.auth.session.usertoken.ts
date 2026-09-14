@@ -14,7 +14,7 @@
  * license document, but changing it is not allowed.
  */
 "use strict";
-import { CONFIG, ComplexStorageCache, InheritClass, New, Package, _Crypt, global } from "qcobjects";
+import { CONFIG, ComplexStorageCache, InheritClass, New, Package, _Crypt, get, set } from "qcobjects";
 
 
 type TGlobalUser = { username: string, token: string, id: string, priority: number };
@@ -57,13 +57,13 @@ export class SessionUserToken extends InheritClass {
   static getGlobalUser(...args: any[]): TGlobalUser {
     const username = [args].join("|");
     const __index__ = "userToken_" + SessionUserToken.generateIndex(username);
-    if (typeof (global as any).get(__index__) === "undefined" || (global as any).get(__index__) === null) {
-      (global as any).set(__index__, New(SessionUserToken, {
+    if (typeof get(__index__) === "undefined" || get(__index__) === null) {
+      set(__index__, New(SessionUserToken, {
         username
       }));
     }
-    SessionUserToken.user = (global as any).get(__index__).user;
-    return global.get(__index__).user as TGlobalUser;
+    SessionUserToken.user = get(__index__).user;
+    return get(__index__).user as TGlobalUser;
   }
 
   static getGlobalUserToken(...args: any[]): string {
@@ -86,9 +86,9 @@ export class SessionUserToken extends InheritClass {
     SessionUserToken.getGlobalUser(args);
     const username = [args].join("|");
     const __index__ = "userToken_" + SessionUserToken.generateIndex(username);
-    if (typeof (global as any).get(__index__) !== "undefined") {
-      (global as any).get(__index__).__cache__.clear();
-      (global as any).set(__index__, null);
+    if (typeof get(__index__) !== "undefined") {
+      get(__index__).__cache__.clear();
+      set(__index__, null);
       SessionUserToken.user = {};
     }
   }

@@ -15,7 +15,7 @@
 */
 
 "use strict";
-import { Package, Component, CONFIG, logger, global } from "qcobjects";
+import { Package, Component, CONFIG, logger, componentsStack } from "qcobjects";
 import { Resize, Fade } from "./org.qcobjects.effects";
 
   type SplashScreenParams = {
@@ -84,9 +84,9 @@ export class SplashScreenComponent extends Component {
           setTimeout(() => {
             if (!_helper_.executed) {
               const _componentRoot = (this.shadowed) ? (this.shadowRoot?.host as HTMLElement) : (this.body as HTMLElement);
-              if (typeof global.componentsStack !== "undefined") {
+              if (typeof componentsStack !== "undefined") {
                  
-                global.componentsStack.filter((c: MainSplashComponent) => c.body.hasAttribute("splashscreen")).map(
+                componentsStack.filter((c: MainSplashComponent) => c.body.hasAttribute("splashscreen")).map(
                   (mainComponent: MainSplashComponent) => {
                     logger.debug(`Splash Screen of Main Component: ${mainComponent.name}`);
                     mainComponent.splashScreenComponent = this;
