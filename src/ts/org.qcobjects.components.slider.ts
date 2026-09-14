@@ -179,8 +179,8 @@ export class SliderComponent extends Component {
     <div class="qco-slider__container">
       <component name="slidelist" componentClass="SlideListComponent" subcomponentClass="SlideItemComponent" serviceClass="{{SERVICE_CLASS}}" ></component>
 
-      <a class="prev" onclick="global.get('{{sliderHandler}}').plusSlidesAndStop(-1)">&#10094;</a>
-      <a class="next" onclick="global.get('{{sliderHandler}}').plusSlidesAndStop(1)">&#10095;</a>
+      <a class="prev">&#10094;</a>
+      <a class="next">&#10095;</a>
     </div>
     <br>
 
@@ -191,7 +191,6 @@ export class SliderComponent extends Component {
     this.tplsource = "inline";
     this.shadowed = true;
     this.data.SERVICE_CLASS = this.body.getAttribute("serviceClass");
-    this.data.sliderHandler = "slider_" + this.__instanceID.toString();
     this.body.setAttribute("controllerClass", "SliderController");
 
   }

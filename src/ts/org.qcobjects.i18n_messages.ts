@@ -14,7 +14,7 @@
  * license document, but changing it is not allowed.
  */
 "use strict";
-import { Package, InheritClass, CONFIG, Import, global } from "qcobjects";
+import { Package, InheritClass, CONFIG, Import, get, set } from "qcobjects";
 
 
 
@@ -28,13 +28,13 @@ export class i18n_messages extends InheritClass {
     });
     if (CONFIG.get("use_i18n", false)) {
       CONFIG.set("lang", "en");
-      if (!global.get("i18n")) {
-        global.set("i18n", {
+      if (!get("i18n")) {
+        set("i18n", {
           messages
         });
       } else {
-        global.set("i18n", {
-          messages: global.get("i18n").messages.concat(messages)
+        set("i18n", {
+          messages: get("i18n").messages.concat(messages)
         });
       }
     }
