@@ -14,7 +14,7 @@
  * license document, but changing it is not allowed.
  */
 "use strict";
-import { ClassFactory, Controller, New, Package, logger, Component, set } from "qcobjects";
+import { ClassFactory, Controller, New, Package, logger, Component } from "qcobjects";
 
 type SliderParams = {
   dependencies: any[];
@@ -38,8 +38,6 @@ export class SliderController extends Controller {
     this.component = component;
     this._componentRoot = (component.shadowed) ? (component.shadowRoot) : (component.body);
     this.sliderHandlerName = "slider_" + this.component.__instanceID.toString();
-    set(this.sliderHandlerName, this);
-
   }
 
 
@@ -111,13 +109,18 @@ export class SliderController extends Controller {
   fillDots() {
     const slides = (this._componentRoot as any)?.subelements(".qcoSlides");
     slides.map((slide: HTMLElement, index: number) => {
-      const dotHTML = document.createElement("span");
-      const dotContent = `<span class="qcoSlider__dots--dot" onclick="global.get('${this.sliderHandlerName}').currentSlide(${index})"></span>`;
-      dotHTML.innerHTML = dotContent;
-
-      return (this._componentRoot as any)?.subelements(".qcoSlider__dots")[0].append(dotHTML);
+      const dot = document.createElement("span");
+      dot.className = "qcoSlider__dots--dot";
+      dot.addEventListener("click", () => this.currentSlide(index));
+      return (this._componentRoot as any)?.subelements(".qcoSlider__dots")[0].append(dot);
     });
+  }
 
+  bindControls() {
+    const prev = (this._componentRoot as any)?.subelements(".prev");
+    const next = (this._componentRoot as any)?.subelements(".next");
+    prev?.map((el: HTMLElement) => el.addEventListener("click", () => this.plusSlidesAndStop(-1)));
+    next?.map((el: HTMLElement) => el.addEventListener("click", () => this.plusSlidesAndStop(1)));
   }
 
   done() {
@@ -128,6 +131,7 @@ export class SliderController extends Controller {
     });
     setTimeout(() => {
       this.fillDots();
+      this.bindControls();
       this.slideIndex = 0;
       this.showSlides(this.slideIndex);
       this.automate();
