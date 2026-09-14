@@ -2,6 +2,10 @@
 
 This is an automatic Changelog history of versions generated using the command: **qcobjects v-changelog > CHANGELOG.md**
 
+## v2.7.0
+
+	- fix: adapt to core 2.7.0 (global.get/set → get/set, componentsStack; slider event delegation)
+
 ## v2.6.2
 
 	- fix: repository.url QuickCorp -> QCObjects/qcobjects-sdk (Sigstore provenance E422)
