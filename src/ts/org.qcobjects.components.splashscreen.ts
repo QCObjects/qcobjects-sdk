@@ -62,6 +62,10 @@ export class SplashScreenComponent extends Component {
         }
         component.data.basePath = component.basePath;
       } else {
+        // splashscreen disabled (not start URL / not browser): make the component inert
+        // so it does not try to feed/shadow an uninitialized body.
+        component.tplsource = "none";
+        component.template = "";
         if (typeof component !== "undefined" && typeof component.body !== "undefined") {
           component.body.style.display = "none";
         }
