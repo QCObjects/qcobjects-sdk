@@ -60,10 +60,6 @@ import { Timer, Package, logger } from "qcobjects";
           }
         });
       }
-      // eslint-disable-next-line no-unused-vars
-      thread(arg0: { duration: any; timing: (timeFraction: number) => number; intervalInterceptor(progress: number): void; }) {
-        throw new Error("Method not implemented.");
-      }
     }
 
   ]);

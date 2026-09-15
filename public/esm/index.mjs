@@ -5,7 +5,7 @@ var __name = (target, value) => __defProp(target, "name", { value, configurable:
 import { CONFIG as CONFIG9, GlobalSettings, _top } from "qcobjects";
 
 // src/ts/org.qcobjects.i18n_messages.ts
-import { Package, InheritClass, CONFIG, Import, global as global2 } from "qcobjects";
+import { Package, InheritClass, CONFIG, Import, get, set } from "qcobjects";
 var i18n_messages = class extends InheritClass {
   static {
     __name(this, "i18n_messages");
@@ -18,13 +18,13 @@ var i18n_messages = class extends InheritClass {
     });
     if (CONFIG.get("use_i18n", false)) {
       CONFIG.set("lang", "en");
-      if (!global2.get("i18n")) {
-        global2.set("i18n", {
+      if (!get("i18n")) {
+        set("i18n", {
           messages
         });
       } else {
-        global2.set("i18n", {
-          messages: global2.get("i18n").messages.concat(messages)
+        set("i18n", {
+          messages: get("i18n").messages.concat(messages)
         });
       }
     }
@@ -935,8 +935,8 @@ var SliderComponent = class extends Component5 {
     <div class="qco-slider__container">
       <component name="slidelist" componentClass="SlideListComponent" subcomponentClass="SlideItemComponent" serviceClass="{{SERVICE_CLASS}}" ></component>
 
-      <a class="prev" onclick="global.get('{{sliderHandler}}').plusSlidesAndStop(-1)">&#10094;</a>
-      <a class="next" onclick="global.get('{{sliderHandler}}').plusSlidesAndStop(1)">&#10095;</a>
+      <a class="prev">&#10094;</a>
+      <a class="next">&#10095;</a>
     </div>
     <br>
 
@@ -947,7 +947,6 @@ var SliderComponent = class extends Component5 {
     this.tplsource = "inline";
     this.shadowed = true;
     this.data.SERVICE_CLASS = this.body.getAttribute("serviceClass");
-    this.data.sliderHandler = "slider_" + this.__instanceID.toString();
     this.body.setAttribute("controllerClass", "SliderController");
   }
 };
@@ -1116,7 +1115,7 @@ Package11("org.quickcorp.components.notifications", [
 ]);
 
 // src/ts/org.qcobjects.components.splashscreen.ts
-import { Package as Package12, Component as Component7, CONFIG as CONFIG3, logger as logger4, global as global3 } from "qcobjects";
+import { Package as Package12, Component as Component7, CONFIG as CONFIG3, logger as logger4, componentsStack } from "qcobjects";
 var SplashScreenComponent = class extends Component7 {
   static {
     __name(this, "SplashScreenComponent");
@@ -1159,8 +1158,8 @@ var SplashScreenComponent = class extends Component7 {
         setTimeout(() => {
           if (!_helper_.executed) {
             const _componentRoot = this.shadowed ? this.shadowRoot?.host : this.body;
-            if (typeof global3.componentsStack !== "undefined") {
-              global3.componentsStack.filter((c) => c.body.hasAttribute("splashscreen")).map(
+            if (typeof componentsStack !== "undefined") {
+              componentsStack.filter((c) => c.body.hasAttribute("splashscreen")).map(
                 (mainComponent) => {
                   logger4.debug(`Splash Screen of Main Component: ${mainComponent.name}`);
                   mainComponent.splashScreenComponent = this;
@@ -1210,10 +1209,6 @@ var SplashScreenComponent = class extends Component7 {
       _helper_.executed = false;
       this.addComponentHelper(_helper_.bind(component));
     }
-  }
-  // eslint-disable-next-line no-unused-vars
-  addComponentHelper(arg0) {
-    throw new Error("Method not implemented.");
   }
 };
 Package12("org.qcobjects.components.base", [
@@ -2187,7 +2182,6 @@ var SliderController = class extends Controller4 {
     this.component = component;
     this._componentRoot = component.shadowed ? component.shadowRoot : component.body;
     this.sliderHandlerName = "slider_" + this.component.__instanceID.toString();
-    global.set(this.sliderHandlerName, this);
   }
   stop() {
     if (this.interval != null) {
@@ -2252,11 +2246,17 @@ var SliderController = class extends Controller4 {
   fillDots() {
     const slides = this._componentRoot?.subelements(".qcoSlides");
     slides.map((slide, index) => {
-      const dotHTML = document.createElement("span");
-      const dotContent = `<span class="qcoSlider__dots--dot" onclick="global.get('${this.sliderHandlerName}').currentSlide(${index})"></span>`;
-      dotHTML.innerHTML = dotContent;
-      return this._componentRoot?.subelements(".qcoSlider__dots")[0].append(dotHTML);
+      const dot = document.createElement("span");
+      dot.className = "qcoSlider__dots--dot";
+      dot.addEventListener("click", () => this.currentSlide(index));
+      return this._componentRoot?.subelements(".qcoSlider__dots")[0].append(dot);
     });
+  }
+  bindControls() {
+    const prev = this._componentRoot?.subelements(".prev");
+    const next = this._componentRoot?.subelements(".next");
+    prev?.map((el) => el.addEventListener("click", () => this.plusSlidesAndStop(-1)));
+    next?.map((el) => el.addEventListener("click", () => this.plusSlidesAndStop(1)));
   }
   done() {
     const slides = this._componentRoot?.subelements(".qcoSlides");
@@ -2268,6 +2268,7 @@ var SliderController = class extends Controller4 {
     });
     setTimeout(() => {
       this.fillDots();
+      this.bindControls();
       this.slideIndex = 0;
       this.showSlides(this.slideIndex);
       this.automate();
@@ -2420,10 +2421,6 @@ var FormController = class extends Controller5 {
     this.onpress(".submit", () => {
       this.formSaveTouchHandler();
     });
-  }
-  // eslint-disable-next-line no-unused-vars
-  onpress(arg0, arg1) {
-    throw new Error("Method not implemented.");
   }
 };
 Package17("org.qcobjects.controllers.form", [
@@ -2623,7 +2620,7 @@ Package22("org.qcobjects.tools.layouts", [
 ]);
 
 // src/ts/org.qcobjects.cloud.auth.session.usertoken.ts
-import { CONFIG as CONFIG8, ComplexStorageCache, InheritClass as InheritClass4, New as New9, Package as Package23, _Crypt, global as global4 } from "qcobjects";
+import { CONFIG as CONFIG8, ComplexStorageCache, InheritClass as InheritClass4, New as New9, Package as Package23, _Crypt, get as get2, set as set2 } from "qcobjects";
 var SessionUserToken = class _SessionUserToken extends InheritClass4 {
   static {
     __name(this, "SessionUserToken");
@@ -2660,13 +2657,13 @@ var SessionUserToken = class _SessionUserToken extends InheritClass4 {
   static getGlobalUser(...args) {
     const username = [args].join("|");
     const __index__ = "userToken_" + _SessionUserToken.generateIndex(username);
-    if (typeof global4.get(__index__) === "undefined" || global4.get(__index__) === null) {
-      global4.set(__index__, New9(_SessionUserToken, {
+    if (typeof get2(__index__) === "undefined" || get2(__index__) === null) {
+      set2(__index__, New9(_SessionUserToken, {
         username
       }));
     }
-    _SessionUserToken.user = global4.get(__index__).user;
-    return global4.get(__index__).user;
+    _SessionUserToken.user = get2(__index__).user;
+    return get2(__index__).user;
   }
   static getGlobalUserToken(...args) {
     return _SessionUserToken.getGlobalUser(args).token;
@@ -2684,9 +2681,9 @@ var SessionUserToken = class _SessionUserToken extends InheritClass4 {
     _SessionUserToken.getGlobalUser(args);
     const username = [args].join("|");
     const __index__ = "userToken_" + _SessionUserToken.generateIndex(username);
-    if (typeof global4.get(__index__) !== "undefined") {
-      global4.get(__index__).__cache__.clear();
-      global4.set(__index__, null);
+    if (typeof get2(__index__) !== "undefined") {
+      get2(__index__).__cache__.clear();
+      set2(__index__, null);
       _SessionUserToken.user = {};
     }
   }
