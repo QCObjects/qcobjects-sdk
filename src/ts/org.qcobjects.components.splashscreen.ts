@@ -140,10 +140,7 @@ export class SplashScreenComponent extends Component {
       }
 
     }
-    // eslint-disable-next-line no-unused-vars
-    addComponentHelper(arg0: { (): void; executed: boolean; }) {
-      throw new Error("Method not implemented.");
-    }
+
 
 
   }

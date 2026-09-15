@@ -184,12 +184,6 @@ export class FormController extends Controller {
     });
 
   }
-  // eslint-disable-next-line no-unused-vars
-  onpress(arg0: string, arg1: () => void) {
-    throw new Error("Method not implemented.");
-  }
-
-
 }
 
 Package("org.qcobjects.controllers.form", [

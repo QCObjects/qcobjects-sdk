@@ -101,13 +101,13 @@ var global = (() => {
       });
       if (import_qcobjects.CONFIG.get("use_i18n", false)) {
         import_qcobjects.CONFIG.set("lang", "en");
-        if (!import_qcobjects.global.get("i18n")) {
-          import_qcobjects.global.set("i18n", {
+        if (!(0, import_qcobjects.get)("i18n")) {
+          (0, import_qcobjects.set)("i18n", {
             messages
           });
         } else {
-          import_qcobjects.global.set("i18n", {
-            messages: import_qcobjects.global.get("i18n").messages.concat(messages)
+          (0, import_qcobjects.set)("i18n", {
+            messages: (0, import_qcobjects.get)("i18n").messages.concat(messages)
           });
         }
       }
@@ -1018,8 +1018,8 @@ var global = (() => {
     <div class="qco-slider__container">
       <component name="slidelist" componentClass="SlideListComponent" subcomponentClass="SlideItemComponent" serviceClass="{{SERVICE_CLASS}}" ></component>
 
-      <a class="prev" onclick="global.get('{{sliderHandler}}').plusSlidesAndStop(-1)">&#10094;</a>
-      <a class="next" onclick="global.get('{{sliderHandler}}').plusSlidesAndStop(1)">&#10095;</a>
+      <a class="prev">&#10094;</a>
+      <a class="next">&#10095;</a>
     </div>
     <br>
 
@@ -1030,7 +1030,6 @@ var global = (() => {
       this.tplsource = "inline";
       this.shadowed = true;
       this.data.SERVICE_CLASS = this.body.getAttribute("serviceClass");
-      this.data.sliderHandler = "slider_" + this.__instanceID.toString();
       this.body.setAttribute("controllerClass", "SliderController");
     }
   };
@@ -1242,8 +1241,8 @@ var global = (() => {
           setTimeout(() => {
             if (!_helper_.executed) {
               const _componentRoot = this.shadowed ? this.shadowRoot?.host : this.body;
-              if (typeof import_qcobjects12.global.componentsStack !== "undefined") {
-                import_qcobjects12.global.componentsStack.filter((c) => c.body.hasAttribute("splashscreen")).map(
+              if (typeof import_qcobjects12.componentsStack !== "undefined") {
+                import_qcobjects12.componentsStack.filter((c) => c.body.hasAttribute("splashscreen")).map(
                   (mainComponent) => {
                     import_qcobjects12.logger.debug(`Splash Screen of Main Component: ${mainComponent.name}`);
                     mainComponent.splashScreenComponent = this;
@@ -1293,10 +1292,6 @@ var global = (() => {
         _helper_.executed = false;
         this.addComponentHelper(_helper_.bind(component));
       }
-    }
-    // eslint-disable-next-line no-unused-vars
-    addComponentHelper(arg0) {
-      throw new Error("Method not implemented.");
     }
   };
   (0, import_qcobjects12.Package)("org.qcobjects.components.base", [
@@ -2270,7 +2265,6 @@ var global = (() => {
       this.component = component;
       this._componentRoot = component.shadowed ? component.shadowRoot : component.body;
       this.sliderHandlerName = "slider_" + this.component.__instanceID.toString();
-      global.set(this.sliderHandlerName, this);
     }
     stop() {
       if (this.interval != null) {
@@ -2335,11 +2329,17 @@ var global = (() => {
     fillDots() {
       const slides = this._componentRoot?.subelements(".qcoSlides");
       slides.map((slide, index) => {
-        const dotHTML = document.createElement("span");
-        const dotContent = `<span class="qcoSlider__dots--dot" onclick="global.get('${this.sliderHandlerName}').currentSlide(${index})"></span>`;
-        dotHTML.innerHTML = dotContent;
-        return this._componentRoot?.subelements(".qcoSlider__dots")[0].append(dotHTML);
+        const dot = document.createElement("span");
+        dot.className = "qcoSlider__dots--dot";
+        dot.addEventListener("click", () => this.currentSlide(index));
+        return this._componentRoot?.subelements(".qcoSlider__dots")[0].append(dot);
       });
+    }
+    bindControls() {
+      const prev = this._componentRoot?.subelements(".prev");
+      const next = this._componentRoot?.subelements(".next");
+      prev?.map((el) => el.addEventListener("click", () => this.plusSlidesAndStop(-1)));
+      next?.map((el) => el.addEventListener("click", () => this.plusSlidesAndStop(1)));
     }
     done() {
       const slides = this._componentRoot?.subelements(".qcoSlides");
@@ -2351,6 +2351,7 @@ var global = (() => {
       });
       setTimeout(() => {
         this.fillDots();
+        this.bindControls();
         this.slideIndex = 0;
         this.showSlides(this.slideIndex);
         this.automate();
@@ -2503,10 +2504,6 @@ var global = (() => {
       this.onpress(".submit", () => {
         this.formSaveTouchHandler();
       });
-    }
-    // eslint-disable-next-line no-unused-vars
-    onpress(arg0, arg1) {
-      throw new Error("Method not implemented.");
     }
   };
   (0, import_qcobjects17.Package)("org.qcobjects.controllers.form", [
@@ -2743,13 +2740,13 @@ var global = (() => {
     static getGlobalUser(...args) {
       const username = [args].join("|");
       const __index__ = "userToken_" + _SessionUserToken.generateIndex(username);
-      if (typeof import_qcobjects23.global.get(__index__) === "undefined" || import_qcobjects23.global.get(__index__) === null) {
-        import_qcobjects23.global.set(__index__, (0, import_qcobjects23.New)(_SessionUserToken, {
+      if (typeof (0, import_qcobjects23.get)(__index__) === "undefined" || (0, import_qcobjects23.get)(__index__) === null) {
+        (0, import_qcobjects23.set)(__index__, (0, import_qcobjects23.New)(_SessionUserToken, {
           username
         }));
       }
-      _SessionUserToken.user = import_qcobjects23.global.get(__index__).user;
-      return import_qcobjects23.global.get(__index__).user;
+      _SessionUserToken.user = (0, import_qcobjects23.get)(__index__).user;
+      return (0, import_qcobjects23.get)(__index__).user;
     }
     static getGlobalUserToken(...args) {
       return _SessionUserToken.getGlobalUser(args).token;
@@ -2767,9 +2764,9 @@ var global = (() => {
       _SessionUserToken.getGlobalUser(args);
       const username = [args].join("|");
       const __index__ = "userToken_" + _SessionUserToken.generateIndex(username);
-      if (typeof import_qcobjects23.global.get(__index__) !== "undefined") {
-        import_qcobjects23.global.get(__index__).__cache__.clear();
-        import_qcobjects23.global.set(__index__, null);
+      if (typeof (0, import_qcobjects23.get)(__index__) !== "undefined") {
+        (0, import_qcobjects23.get)(__index__).__cache__.clear();
+        (0, import_qcobjects23.set)(__index__, null);
         _SessionUserToken.user = {};
       }
     }
