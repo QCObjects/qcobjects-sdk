@@ -1224,13 +1224,9 @@ var SplashScreenComponent = class extends import_qcobjects12.Component {
     this._enabled_ = _enabled_;
     if (this._enabled_) {
       const displayEffectDuration = 1e3;
-      let duration = this.body.getAttribute("duration");
-      if (duration === null) {
-        duration = displayEffectDuration;
-      } else {
-        duration = parseInt(duration.toString());
-      }
-      this._bgcolor = this.body.style.backgroundColor;
+      const rawDuration = this.body?.getAttribute("duration");
+      let duration = rawDuration == null ? displayEffectDuration : parseInt(rawDuration.toString());
+      this._bgcolor = this.body?.style?.backgroundColor ?? "";
       const _helper_ = /* @__PURE__ */ __name(() => {
         setTimeout(() => {
           if (!_helper_.executed) {
