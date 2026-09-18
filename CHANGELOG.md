@@ -2,6 +2,11 @@
 
 This is an automatic Changelog history of versions generated using the command: **qcobjects v-changelog > CHANGELOG.md**
 
+## v2.7.1
+
+	- fix: remove three throw-stubs shadowing base-class implementations (addComponentHelper/onpress/thread)
+	- fix(splashscreen): guard constructor body access (body?.getAttribute/style)
+
 ## v2.7.0
 
 	- fix: adapt to core 2.7.0 (global.get/set → get/set, componentsStack; slider event delegation)
