@@ -90,7 +90,7 @@ export { SessionData } from "./ts/org.qcobjects.cloud.auth.session.data";
         // eslint-disable-next-line camelcase
         value: __qcobjects_sdk__,
       });
-    } catch (e) {
+    } catch {
       if (typeof _top.__qcobjects_sdk__ !== "undefined") {
         _top.__qcobjects_sdk__.__loaded__ = true;
       }

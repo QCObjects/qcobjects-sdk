@@ -73,7 +73,7 @@ export class SplashScreenComponent extends Component {
       if (this._enabled_) {
         const displayEffectDuration = 1000;
         const rawDuration = this.body?.getAttribute("duration");
-        let duration = rawDuration == null ? displayEffectDuration : parseInt(rawDuration.toString());
+        const duration = rawDuration == null ? displayEffectDuration : parseInt(rawDuration.toString());
         this._bgcolor = this.body?.style?.backgroundColor ?? "";
 
         const _helper_ = () => {
