@@ -10,6 +10,7 @@
     "noImplicitThis": true,
     "alwaysStrict": true,
     "target": "ESNext",
+    "useDefineForClassFields": false,
     "lib": [
       "ESNext",
       "DOM"

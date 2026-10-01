@@ -134,14 +134,13 @@ var import_qcobjects7 = require("qcobjects");
 // src/ts/org.qcobjects.effects.base.ts
 var import_qcobjects3 = require("qcobjects");
 var Fade = class extends import_qcobjects3.Effect {
-  static {
-    __name(this, "Fade");
-  }
-  duration = 1e3;
-  static duration;
   constructor(o) {
     super(o);
+    this.duration = 1e3;
     this.duration = o?.duration;
+  }
+  static {
+    __name(this, "Fade");
   }
   apply(element, alphaFrom, alphaTo) {
     const da = alphaTo - alphaFrom;
@@ -175,11 +174,13 @@ var Fade = class extends import_qcobjects3.Effect {
   }
 };
 var Move = class extends import_qcobjects3.Effect {
+  constructor() {
+    super(...arguments);
+    this.duration = 1e3;
+  }
   static {
     __name(this, "Move");
   }
-  duration = 1e3;
-  static duration;
   static apply(element, xfrom, yfrom, xto, yto) {
     const dx = xto - xfrom;
     const dy = yto - yfrom;
@@ -207,47 +208,61 @@ var Move = class extends import_qcobjects3.Effect {
 // src/ts/org.qcobjects.effects.extended.ts
 var import_qcobjects4 = require("qcobjects");
 var MoveXInFromRight = class extends Move {
+  constructor() {
+    super(...arguments);
+    this.duration = 1e3;
+  }
   static {
     __name(this, "MoveXInFromRight");
   }
-  duration = 1e3;
   static apply(element) {
     Move.apply.call(this, element, element.width, 0, 0, 0);
   }
 };
 var MoveXInFromLeft = class extends Move {
+  constructor() {
+    super(...arguments);
+    this.duration = 1e3;
+  }
   static {
     __name(this, "MoveXInFromLeft");
   }
-  duration = 1e3;
   static apply(element) {
     Move.apply.call(this, element, -element.width, 0, 0, 0);
   }
 };
 var MoveYInFromBottom = class extends Move {
+  constructor() {
+    super(...arguments);
+    this.duration = 1e3;
+  }
   static {
     __name(this, "MoveYInFromBottom");
   }
-  duration = 1e3;
   static apply(element) {
     Move.apply.call(this, element, 0, element.height, 0, 0);
   }
 };
 var MoveYInFromTop = class extends Move {
+  constructor() {
+    super(...arguments);
+    this.duration = 1e3;
+  }
   static {
     __name(this, "MoveYInFromTop");
   }
-  duration = 1e3;
   static apply(element) {
     Move.apply.call(this, element, 0, -element.height, 0, 0);
   }
 };
 var RotateX = class extends import_qcobjects4.Effect {
+  constructor() {
+    super(...arguments);
+    this.duration = 1e3;
+  }
   static {
     __name(this, "RotateX");
   }
-  duration = 1e3;
-  static duration;
   static apply(element, angleFrom, angleTo) {
     const da = angleTo - angleFrom;
     super.animate({
@@ -265,11 +280,13 @@ var RotateX = class extends import_qcobjects4.Effect {
   }
 };
 var RotateY = class extends import_qcobjects4.Effect {
+  constructor() {
+    super(...arguments);
+    this.duration = 1e3;
+  }
   static {
     __name(this, "RotateY");
   }
-  duration = 1e3;
-  static duration;
   static apply(element, angleFrom, angleTo) {
     const da = angleTo - angleFrom;
     super.animate({
@@ -287,10 +304,13 @@ var RotateY = class extends import_qcobjects4.Effect {
   }
 };
 var RotateZ = class extends import_qcobjects4.Effect {
+  constructor() {
+    super(...arguments);
+    this.duration = 1e3;
+  }
   static {
     __name(this, "RotateZ");
   }
-  duration = 1e3;
   apply(element, angleFrom, angleTo) {
     const da = angleTo - angleFrom;
     super.animate({
@@ -308,10 +328,13 @@ var RotateZ = class extends import_qcobjects4.Effect {
   }
 };
 var Rotate = class extends import_qcobjects4.Effect {
+  constructor() {
+    super(...arguments);
+    this.duration = 1e3;
+  }
   static {
     __name(this, "Rotate");
   }
-  duration = 1e3;
   apply(element, angleFrom, angleTo) {
     const da = angleTo - angleFrom;
     super.animate({
@@ -329,10 +352,13 @@ var Rotate = class extends import_qcobjects4.Effect {
   }
 };
 var Radius = class extends import_qcobjects4.Effect {
+  constructor() {
+    super(...arguments);
+    this.duration = 1e3;
+  }
   static {
     __name(this, "Radius");
   }
-  duration = 1e3;
   apply(element, radiusFrom, radiusTo) {
     const dr = radiusTo - radiusFrom;
     super.animate({
@@ -350,10 +376,13 @@ var Radius = class extends import_qcobjects4.Effect {
   }
 };
 var Resize = class extends import_qcobjects4.Effect {
+  constructor() {
+    super(...arguments);
+    this.duration = 1e3;
+  }
   static {
     __name(this, "Resize");
   }
-  duration = 1e3;
   apply(element, scaleFrom, scaleTo) {
     const ds = scaleTo - scaleFrom;
     super.animate({
@@ -372,10 +401,13 @@ var Resize = class extends import_qcobjects4.Effect {
   }
 };
 var WipeLeft = class extends import_qcobjects4.Effect {
+  constructor() {
+    super(...arguments);
+    this.duration = 1e3;
+  }
   static {
     __name(this, "WipeLeft");
   }
-  duration = 1e3;
   apply(element, scaleFrom, scaleTo) {
     const ds = scaleTo - scaleFrom;
     super.animate({
@@ -394,10 +426,13 @@ var WipeLeft = class extends import_qcobjects4.Effect {
   }
 };
 var WipeRight = class extends import_qcobjects4.Effect {
+  constructor() {
+    super(...arguments);
+    this.duration = 1e3;
+  }
   static {
     __name(this, "WipeRight");
   }
-  duration = 1e3;
   apply(element, scaleFrom, scaleTo) {
     const ds = scaleTo - scaleFrom;
     super.animate({
@@ -416,10 +451,13 @@ var WipeRight = class extends import_qcobjects4.Effect {
   }
 };
 var WipeUp = class extends import_qcobjects4.Effect {
+  constructor() {
+    super(...arguments);
+    this.duration = 1e3;
+  }
   static {
     __name(this, "WipeUp");
   }
-  duration = 1e3;
   apply(element, scaleFrom, scaleTo) {
     const ds = scaleTo - scaleFrom;
     super.animate({
@@ -438,10 +476,13 @@ var WipeUp = class extends import_qcobjects4.Effect {
   }
 };
 var WipeDown = class extends import_qcobjects4.Effect {
+  constructor() {
+    super(...arguments);
+    this.duration = 1e3;
+  }
   static {
     __name(this, "WipeDown");
   }
-  duration = 1e3;
   apply(element, scaleFrom, scaleTo) {
     const ds = scaleTo - scaleFrom;
     super.animate({
@@ -479,22 +520,31 @@ var WipeDown = class extends import_qcobjects4.Effect {
 // src/ts/org.qcobjects.modal.effects.ts
 var import_qcobjects5 = require("qcobjects");
 var ModalFade = class extends Fade {
+  constructor() {
+    super(...arguments);
+    this.duration = 500;
+  }
   static {
     __name(this, "ModalFade");
   }
-  duration = 500;
 };
 var ModalMoveUp = class extends Move {
+  constructor() {
+    super(...arguments);
+    this.duration = 800;
+  }
   static {
     __name(this, "ModalMoveUp");
   }
-  duration = 800;
 };
 var ModalMoveDown = class extends Move {
+  constructor() {
+    super(...arguments);
+    this.duration = 300;
+  }
   static {
     __name(this, "ModalMoveDown");
   }
-  duration = 300;
 };
 (0, import_qcobjects5.Package)("org.qcobjects.modal.effects", [
   ModalFade,
@@ -505,18 +555,14 @@ var ModalMoveDown = class extends Move {
 // src/ts/org.qcobjects.base.components.ts
 var import_qcobjects6 = require("qcobjects");
 var FormField = class extends import_qcobjects6.Component {
-  static {
-    __name(this, "FormField");
-  }
-  fieldType;
-  cached = false;
-  reload = true;
-  body;
-  name;
-  data;
   constructor(o) {
     o.name = typeof o.name !== "undefined" ? o.name : "form-field";
     super(o);
+    this.cached = false;
+    this.reload = true;
+  }
+  static {
+    __name(this, "FormField");
   }
   createBindingEvents() {
     let _objList;
@@ -578,18 +624,18 @@ var FormField = class extends import_qcobjects6.Component {
 
 // src/ts/org.qcobjects.components.ts
 var ShadowedComponent = class extends import_qcobjects7.Component {
-  static {
-    __name(this, "ShadowedComponent");
-  }
-  container = null;
-  shadowed = true;
-  cached = false;
-  controller = null;
-  view = null;
-  data = {};
   constructor(o) {
     o.body = (0, import_qcobjects7._DOMCreateElement)("div");
     super(o);
+    this.container = null;
+    this.shadowed = true;
+    this.cached = false;
+    this.controller = null;
+    this.view = null;
+    this.data = {};
+  }
+  static {
+    __name(this, "ShadowedComponent");
   }
 };
 var ButtonField = class extends FormField {
@@ -629,14 +675,14 @@ var EmailField = class extends FormField {
   }
 };
 var ModalEnclosureComponent = class extends import_qcobjects7.Component {
-  static {
-    __name(this, "ModalEnclosureComponent");
-  }
-  name = "modalenclosure";
-  tplsource = "inline";
-  cached = false;
-  basePath = import_qcobjects7.CONFIG.get("modalBasePath", import_qcobjects7.CONFIG.get("remoteSDKPath", ""));
-  template = `
+  constructor(o) {
+    o.body = (0, import_qcobjects7._DOMCreateElement)("div");
+    super(o);
+    this.name = "modalenclosure";
+    this.tplsource = "inline";
+    this.cached = false;
+    this.basePath = import_qcobjects7.CONFIG.get("modalBasePath", import_qcobjects7.CONFIG.get("remoteSDKPath", ""));
+    this.template = `
 <!-- The Modal -->
 <style>
 @import url('https://sdk.qcobjects.dev/css/modal.css');
@@ -651,36 +697,28 @@ var ModalEnclosureComponent = class extends import_qcobjects7.Component {
 
 </div>
 `;
-  data = {};
-  constructor(o) {
-    o.body = (0, import_qcobjects7._DOMCreateElement)("div");
-    super(o);
+    this.data = {};
+  }
+  static {
+    __name(this, "ModalEnclosureComponent");
   }
 };
 var ModalComponent = class extends import_qcobjects7.Component {
-  static {
-    __name(this, "ModalComponent");
-  }
-  name = "modal";
-  cached = false;
-  modalEnclosureComponentClass = "ModalEnclosureComponent";
-  controller = null;
-  view = null;
-  tplsource = "none";
-  closeOnClickOutside = false;
-  data = {
-    content: "",
-    modalId: 0
-  };
-  submodal = null;
-  __instanceID;
-  basePath;
-  subcomponents;
-  body;
-  templateURI;
   constructor(o) {
     o.basePath = import_qcobjects7.CONFIG.get("modalBasePath", import_qcobjects7.CONFIG.get("remoteSDKPath", ""));
     super(o);
+    this.name = "modal";
+    this.cached = false;
+    this.modalEnclosureComponentClass = "ModalEnclosureComponent";
+    this.controller = null;
+    this.view = null;
+    this.tplsource = "none";
+    this.closeOnClickOutside = false;
+    this.data = {
+      content: "",
+      modalId: 0
+    };
+    this.submodal = null;
     this.data.modalId = this.__instanceID;
     const submodal = (0, import_qcobjects7.New)((0, import_qcobjects7.ClassFactory)(this.modalEnclosureComponentClass), {
       name: this.name,
@@ -694,6 +732,9 @@ var ModalComponent = class extends import_qcobjects7.Component {
     } else {
       this.body.append(submodal.body);
     }
+  }
+  static {
+    __name(this, "ModalComponent");
   }
   modal() {
     const modalId = this.data.modalId;
@@ -744,13 +785,16 @@ var ModalComponent = class extends import_qcobjects7.Component {
   }
 };
 var SwaggerUIComponent = class extends import_qcobjects7.Component {
+  constructor() {
+    super(...arguments);
+    this.cached = false;
+    this.basePath = import_qcobjects7.CONFIG.get("remoteSDKPath", "");
+    this.tplextension = "tpl.html";
+    this.name = "swagger-ui";
+  }
   static {
     __name(this, "SwaggerUIComponent");
   }
-  cached = false;
-  basePath = import_qcobjects7.CONFIG.get("remoteSDKPath", "");
-  tplextension = "tpl.html";
-  name = "swagger-ui";
 };
 (0, import_qcobjects7.Package)("org.qcobjects.form.components", [
   ShadowedComponent,
@@ -766,38 +810,40 @@ var SwaggerUIComponent = class extends import_qcobjects7.Component {
 // src/ts/org.qcobjects.components.grid.ts
 var import_qcobjects8 = require("qcobjects");
 var GridItemComponent = class extends import_qcobjects8.Component {
-  static {
-    __name(this, "GridItemComponent");
-  }
-  name = "grid-item";
-  shadowed = true;
-  tplsource = "inline";
-  template = `
+  constructor() {
+    super(...arguments);
+    this.name = "grid-item";
+    this.shadowed = true;
+    this.tplsource = "inline";
+    this.template = `
 <img src="{{image}}" />
 <p>{{description}}</p>
 `;
-  cached = false;
+    this.cached = false;
+  }
+  static {
+    __name(this, "GridItemComponent");
+  }
 };
 var GridComponent = class extends import_qcobjects8.Component {
-  static {
-    __name(this, "GridComponent");
-  }
-  name = "grid";
-  cached = false;
-  view = null;
-  shadowed = true;
-  rows = 3;
-  cols = 3;
-  templateURI = "";
-  data = {};
-  tplsource = "inline";
-  template = "<p>Loading...</p>";
-  body;
   constructor(o) {
     super(o);
+    this.name = "grid";
+    this.cached = false;
+    this.view = null;
+    this.shadowed = true;
+    this.rows = 3;
+    this.cols = 3;
+    this.templateURI = "";
+    this.data = {};
+    this.tplsource = "inline";
+    this.template = "<p>Loading...</p>";
     this.body.setAttribute("controllerClass", "DataGridController");
     const subcomponentClass = this.body.getAttribute("subcomponentClass") !== null ? this.body.getAttribute("subcomponentClass") : "GridItemComponent";
     this.body.setAttribute("subcomponentClass", subcomponentClass);
+  }
+  static {
+    __name(this, "GridComponent");
   }
 };
 (0, import_qcobjects8.Package)("org.qcobjects.components.grid", [
@@ -808,37 +854,30 @@ var GridComponent = class extends import_qcobjects8.Component {
 // src/ts/org.qcobjects.components.list.ts
 var import_qcobjects9 = require("qcobjects");
 var ListItemComponent = class extends import_qcobjects9.Component {
-  static {
-    __name(this, "ListItemComponent");
-  }
-  shadowed = false;
-  tplsource = "inline";
-  template = '<a href="{{value}}">{{label}}</a>';
-  cached = false;
   constructor(o) {
     o.name = "list-item";
     super(o);
+    this.shadowed = false;
+    this.tplsource = "inline";
+    this.template = '<a href="{{value}}">{{label}}</a>';
+    this.cached = false;
+  }
+  static {
+    __name(this, "ListItemComponent");
   }
 };
 var ListComponent = class extends import_qcobjects9.Component {
-  static {
-    __name(this, "ListComponent");
-  }
-  data;
-  shadowed = true;
-  tplsource = "inline";
-  template = "<p>Loading...</p>";
-  body;
-  shadowRoot;
-  rows;
-  subcomponents;
-  done;
-  serviceData;
   constructor(o) {
     o.name = "list";
     super(o);
+    this.shadowed = true;
+    this.tplsource = "inline";
+    this.template = "<p>Loading...</p>";
     this.body.setAttribute("controllerClass", "ListController");
     this.body.setAttribute("subcomponentClass", "ListItemComponent");
+  }
+  static {
+    __name(this, "ListComponent");
   }
 };
 (0, import_qcobjects9.Package)("org.qcobjects.components.list", [
@@ -849,31 +888,24 @@ var ListComponent = class extends import_qcobjects9.Component {
 // src/ts/org.qcobjects.components.slider.ts
 var import_qcobjects10 = require("qcobjects");
 var SlideListComponent = class extends import_qcobjects10.Component {
-  static {
-    __name(this, "SlideListComponent");
-  }
-  tplsource = "inline";
-  template = "<p>Loading...</p>";
-  name = "slidelist";
-  body;
   constructor(o) {
     super(o);
+    this.tplsource = "inline";
+    this.template = "<p>Loading...</p>";
+    this.name = "slidelist";
     this.body.setAttribute("controllerClass", "DataGridController");
     const subcomponentClass = this.body.getAttribute("subcomponentClass") !== null ? this.body.getAttribute("subcomponentClass") : "GridItemComponent";
     this.body.setAttribute("subcomponentClass", subcomponentClass);
   }
+  static {
+    __name(this, "SlideListComponent");
+  }
 };
 var SlideItemComponent = class extends import_qcobjects10.Component {
-  static {
-    __name(this, "SlideItemComponent");
-  }
-  effectClass = "Fade";
-  name = "slider_item";
-  data;
-  template;
-  tplsource;
   constructor(o) {
     super(o);
+    this.effectClass = "Fade";
+    this.name = "slider_item";
     this.data.slideNumber = this.data.__dataIndex + 1;
     this.template = `
     <div class="qcoSlides" style="display:none">
@@ -886,20 +918,14 @@ var SlideItemComponent = class extends import_qcobjects10.Component {
     `;
     this.tplsource = "inline";
   }
+  static {
+    __name(this, "SlideItemComponent");
+  }
 };
 var SliderComponent = class extends import_qcobjects10.Component {
-  static {
-    __name(this, "SliderComponent");
-  }
-  name = "slider";
-  template;
-  tplsource;
-  shadowed;
-  data;
-  body;
-  __instanceID;
   constructor(o) {
     super(o);
+    this.name = "slider";
     this.template = `
     <style>
     /* Slideshow container */
@@ -1026,6 +1052,9 @@ var SliderComponent = class extends import_qcobjects10.Component {
     this.data.SERVICE_CLASS = this.body.getAttribute("serviceClass");
     this.body.setAttribute("controllerClass", "SliderController");
   }
+  static {
+    __name(this, "SliderComponent");
+  }
 };
 (0, import_qcobjects10.Package)("org.qcobjects.components.slider", [
   SlideListComponent,
@@ -1036,18 +1065,13 @@ var SliderComponent = class extends import_qcobjects10.Component {
 // src/ts/org.qcobjects.components.notifications.ts
 var import_qcobjects11 = require("qcobjects");
 var NotificationComponent = class _NotificationComponent extends import_qcobjects11.Component {
-  static {
-    __name(this, "NotificationComponent");
-  }
-  cached = false;
-  tplsource = "inline";
-  shadowed = false;
-  kinds;
-  template;
   constructor(o) {
     o.name = "notification";
     o.body = (0, import_qcobjects11._DOMCreateElement)("div");
     super(o);
+    this.cached = false;
+    this.tplsource = "inline";
+    this.shadowed = false;
     this.template = `
     <style>
     div.notification_background {
@@ -1095,6 +1119,9 @@ var NotificationComponent = class _NotificationComponent extends import_qcobject
     </div>
     `;
     this.kinds = ["danger", "success", "info", "warning"];
+  }
+  static {
+    __name(this, "NotificationComponent");
   }
   display(element) {
     const _display_ = /* @__PURE__ */ __name(function(element2) {
@@ -1194,15 +1221,6 @@ var NotificationComponent = class _NotificationComponent extends import_qcobject
 // src/ts/org.qcobjects.components.splashscreen.ts
 var import_qcobjects12 = require("qcobjects");
 var SplashScreenComponent = class extends import_qcobjects12.Component {
-  static {
-    __name(this, "SplashScreenComponent");
-  }
-  _enabled_;
-  _bgcolor;
-  cached = false;
-  shadowed = true;
-  body;
-  shadowRoot;
   constructor(component) {
     component.name = typeof component.name === "undefined" ? "splashscreen" : component.name;
     const isBrowser = typeof window !== "undefined" && typeof window.self !== "undefined" && window === window.self;
@@ -1220,6 +1238,8 @@ var SplashScreenComponent = class extends import_qcobjects12.Component {
       }
     }
     super(component);
+    this.cached = false;
+    this.shadowed = true;
     this._bgcolor = "";
     this._enabled_ = _enabled_;
     if (this._enabled_) {
@@ -1283,18 +1303,21 @@ var SplashScreenComponent = class extends import_qcobjects12.Component {
       this.addComponentHelper(_helper_.bind(component));
     }
   }
+  static {
+    __name(this, "SplashScreenComponent");
+  }
 };
 (0, import_qcobjects12.Package)("org.qcobjects.components.base", [
   SplashScreenComponent
 ]);
 var VideoSplashScreenComponent = class extends SplashScreenComponent {
-  static {
-    __name(this, "VideoSplashScreenComponent");
-  }
-  cached = false;
-  shadowed = true;
-  tplsource = "inline";
-  template = `
+  constructor(o) {
+    o.name = "videosplashscreen";
+    super(o);
+    this.cached = false;
+    this.shadowed = true;
+    this.tplsource = "inline";
+    this.template = `
   <style>
   :host * {
     box-sizing: border-box;
@@ -1458,19 +1481,19 @@ var VideoSplashScreenComponent = class extends SplashScreenComponent {
   </div>
 
   `;
-  constructor(o) {
-    o.name = "videosplashscreen";
-    super(o);
+  }
+  static {
+    __name(this, "VideoSplashScreenComponent");
   }
 };
 var CubeSplashScreenComponent = class extends SplashScreenComponent {
-  static {
-    __name(this, "CubeSplashScreenComponent");
-  }
-  cached = false;
-  shadowed = true;
-  tplsource = "inline";
-  template = `
+  constructor(o) {
+    o.name = "cubesplashscreen";
+    super(o);
+    this.cached = false;
+    this.shadowed = true;
+    this.tplsource = "inline";
+    this.template = `
   <style>
   @keyframes spin {
     0% {
@@ -1783,9 +1806,9 @@ var CubeSplashScreenComponent = class extends SplashScreenComponent {
   </div>
 
   `;
-  constructor(o) {
-    o.name = "cubesplashscreen";
-    super(o);
+  }
+  static {
+    __name(this, "CubeSplashScreenComponent");
   }
 };
 (0, import_qcobjects12.Package)("org.qcobjects.components.splashscreen", [
@@ -1811,13 +1834,6 @@ var ListController = class extends import_qcobjects14.Controller {
   static {
     __name(this, "ListController");
   }
-  __instanceID;
-  component;
-  valueField;
-  labelField;
-  rows;
-  cols;
-  _componentRoot;
   constructor({ component, dependencies = [], valueField = void 0, labelField = void 0 }) {
     super({ component, dependencies, valueField, labelField });
     this.component = component;
@@ -2012,10 +2028,6 @@ var GridController = class extends import_qcobjects15.Controller {
   static {
     __name(this, "GridController");
   }
-  __instanceID;
-  rows;
-  cols;
-  component;
   constructor(controller) {
     super(controller);
     this.rows = this.component.body.getAttribute("rows");
@@ -2050,11 +2062,6 @@ var DataGridController = class extends import_qcobjects15.Controller {
   static {
     __name(this, "DataGridController");
   }
-  __instanceID;
-  rows;
-  cols;
-  _componentRoot;
-  component;
   constructor(controller) {
     super(controller);
     this._componentRoot = controller.component.shadowed ? controller.component.shadowRoot : controller.component.body;
@@ -2241,20 +2248,18 @@ var DataGridController = class extends import_qcobjects15.Controller {
 // src/ts/org.qcobjects.controllers.slider.ts
 var import_qcobjects16 = require("qcobjects");
 var SliderController = class extends import_qcobjects16.Controller {
-  static {
-    __name(this, "SliderController");
-  }
-  slideIndex = 0;
-  duration = 7100;
-  interval = null;
-  sliderHandlerName = "";
-  _componentRoot;
-  component;
   constructor({ component, dependencies = [], duration = 7100, slideIndex = 0, interval = null, sliderHandlerName = null }) {
     super({ component, dependencies, duration, slideIndex, interval, sliderHandlerName });
+    this.slideIndex = 0;
+    this.duration = 7100;
+    this.interval = null;
+    this.sliderHandlerName = "";
     this.component = component;
     this._componentRoot = component.shadowed ? component.shadowRoot : component.body;
     this.sliderHandlerName = "slider_" + this.component.__instanceID.toString();
+  }
+  static {
+    __name(this, "SliderController");
   }
   stop() {
     if (this.interval != null) {
@@ -2371,18 +2376,21 @@ var FormValidations = class extends import_qcobjects17.Controller {
   }
 };
 var FormController = class extends import_qcobjects17.Controller {
+  constructor(o) {
+    super(o);
+    this.validations = [];
+    this.serviceClass = "";
+    this.formSettings = {
+      backRouting: "#",
+      loadingRouting: "#loading",
+      nextRouting: "#signupsuccessful"
+    };
+    this.component = o.component;
+    this.component = this.component.Cast(FormField);
+  }
   static {
     __name(this, "FormController");
   }
-  validations = [];
-  formValidatorModal;
-  serviceClass = "";
-  formSettings = {
-    backRouting: "#",
-    loadingRouting: "#loading",
-    nextRouting: "#signupsuccessful"
-  };
-  component;
   hasValidation(element) {
     const fieldName = element.getAttribute("data-field");
     let _hasValidation = false;
@@ -2468,11 +2476,6 @@ var FormController = class extends import_qcobjects17.Controller {
       this.save();
     }
   }
-  constructor(o) {
-    super(o);
-    this.component = o.component;
-    this.component = this.component.Cast(FormField);
-  }
   done() {
     import_qcobjects17.logger.debugEnabled = true;
     try {
@@ -2507,8 +2510,6 @@ var SwaggerUIController = class extends import_qcobjects18.Controller {
   static {
     __name(this, "SwaggerUIController");
   }
-  component;
-  dependencies;
   startSwaggerUI() {
     if (typeof SwaggerUIBundle !== "undefined") {
       const ui = SwaggerUIBundle({
@@ -2557,7 +2558,6 @@ var ModalController = class extends import_qcobjects19.Controller {
   static {
     __name(this, "ModalController");
   }
-  component;
   done() {
     const component = this.component;
     component.body.innerHTML = component.body.innerHTML.replace("/{{content}}/g", component.submodal.template);
@@ -2610,12 +2610,12 @@ var CanvasTool = class extends import_qcobjects21.InheritClass {
 // src/ts/org.qcobjects.tools.layouts.ts
 var import_qcobjects22 = require("qcobjects");
 var BasicLayout = class extends import_qcobjects22.InheritClass {
-  static {
-    __name(this, "BasicLayout");
-  }
-  dependencies = [];
   constructor({ component = null, dependencies = [] }) {
     super({ component, dependencies });
+    this.dependencies = [];
+  }
+  static {
+    __name(this, "BasicLayout");
   }
   load() {
     this.dependencies.push((0, import_qcobjects22.New)(import_qcobjects22.SourceCSS, {
@@ -2698,9 +2698,9 @@ var SessionUserToken = class _SessionUserToken extends import_qcobjects23.Inheri
   static {
     __name(this, "SessionUserToken");
   }
-  static user = {};
-  __cache__;
-  __instanceID;
+  static {
+    this.user = {};
+  }
   constructor(o) {
     super(o);
     const __instance__ = this;
@@ -2768,11 +2768,13 @@ var SessionUserToken = class _SessionUserToken extends import_qcobjects23.Inheri
 // src/ts/org.qcobjects.cloud.auth.session.data.ts
 var import_qcobjects24 = require("qcobjects");
 var SessionData = class extends import_qcobjects24.InheritClass {
+  constructor() {
+    super(...arguments);
+    this.__session_container__ = null;
+  }
   static {
     __name(this, "SessionData");
   }
-  __session_container__ = null;
-  sessionData;
   /**
    * Sets the session container
    * 
