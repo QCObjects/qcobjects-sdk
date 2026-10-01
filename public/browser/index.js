@@ -1251,7 +1251,7 @@ var global = (() => {
       if (this._enabled_) {
         const displayEffectDuration = 1e3;
         const rawDuration = this.body?.getAttribute("duration");
-        let duration = rawDuration == null ? displayEffectDuration : parseInt(rawDuration.toString());
+        const duration = rawDuration == null ? displayEffectDuration : parseInt(rawDuration.toString());
         this._bgcolor = this.body?.style?.backgroundColor ?? "";
         const _helper_ = /* @__PURE__ */ __name(() => {
           setTimeout(() => {
@@ -2882,7 +2882,7 @@ var global = (() => {
           // eslint-disable-next-line camelcase
           value: __qcobjects_sdk__
         });
-      } catch (e) {
+      } catch {
         if (typeof _top2.__qcobjects_sdk__ !== "undefined") {
           _top2.__qcobjects_sdk__.__loaded__ = true;
         }
