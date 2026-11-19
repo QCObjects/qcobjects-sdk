@@ -308,10 +308,6 @@ declare module "ts/org.qcobjects.components.splashscreen" {
         body: any;
         shadowRoot: any;
         constructor(component: SplashScreenParams);
-        addComponentHelper(arg0: {
-            (): void;
-            executed: boolean;
-        }): void;
     }
     export class VideoSplashScreenComponent extends SplashScreenComponent {
         cached: boolean;
@@ -411,6 +407,7 @@ declare module "ts/org.qcobjects.controllers.slider" {
         automate(): void;
         showSlides(n: number): void;
         fillDots(): void;
+        bindControls(): void;
         done(): void;
     }
 }
@@ -437,7 +434,6 @@ declare module "ts/org.qcobjects.controllers.form" {
         formSaveTouchHandler(): void;
         constructor(o: any);
         done(): void;
-        onpress(arg0: string, arg1: () => void): void;
     }
 }
 declare module "ts/org.qcobjects.controllers.swagger" {
@@ -561,23 +557,14 @@ declare module "ts/org.qcobjects.cloud.auth.session.data" {
 }
 declare module "index" {
     /**
-     * QCObjects SDK 2.5
+     * QCObjects Framework SDK
      * ________________
      *
      * Author: Jean Machuca <correojean@gmail.com>
      *
      * Cross Browser Javascript Framework for MVC Patterns
-     * QuickCorp/QCObjects is licensed under the
-     * GNU Lesser General Public License v3.0
-     * [LICENSE] (https://github.com/QuickCorp/QCObjects/blob/master/LICENSE.txt)
-     *
-     * Permissions of this copyleft license are conditioned on making available
-     * complete source code of licensed works and modifications under the same
-     * license or the GNU GPLv3. Copyright and license notices must be preserved.
-     * Contributors provide an express grant of patent rights. However, a larger
-     * work using the licensed work through interfaces provided by the licensed
-     * work may be distributed under different terms and without source code for
-     * the larger work.
+     * QCObjects is licensed under the MIT License
+     * [LICENSE] (https://github.com/QCObjects/qcobjects-sdk/blob/main/LICENSE.txt)
      *
      * Copyright (C) 2015 Jean Machuca,<correojean@gmail.com>
      *
@@ -611,4 +598,6 @@ declare module "index" {
 }
 declare module "ts/org.qcobjects.tools" { }
 
-export {};
+declare module "qcobjects-sdk" {
+    export * from "index";
+}
